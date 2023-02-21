@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link href="https://cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: '微软雅黑', sans-serif, Arial, Helvetica;
+    }
+
+    html,
+    body,
+    #app {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: #D61E1E;
+    }
+
+    ul {
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- 引入主题 -->
+  <script src="https://www.runoob.com/static/js/walden.js"></script>
+  <script src="https://blog.hlzyw.cn/style/js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript">
+    /* 鼠标点击特效 */
+    jQuery(function () {
+      $("html").click(function (e) {
+        var a_idx = Math.floor((Math.random() * 13));
+        var a = new Array(
+          "富强", "民主", "文明", "和谐",
+          "自由", "平等", "公正", "法治",
+          "爱国", "敬业", "诚信", "友善");
+        var color1 = Math.floor((Math.random() * 255));
+        var color2 = Math.floor((Math.random() * 255));
+        var color3 = Math.floor((Math.random() * 255));
+
+        var $i = $("<span />").text(a[a_idx]);
+        a_idx = (a_idx + 1) % a.length;
+        var x = e.pageX,
+          y = e.pageY;
+        $i.css({
+          "z-index": 9999999999999,
+          "top": y - 20,
+          "left": x,
+          "position": "absolute",
+          "font-family": "mmm",
+          "fontSize": '1.2rem',
+          "font-weight": "bold",
+          "color": "rgb(" + color1 + "," + color2 + "," + color3 + ")",
+          "-webkit-user-select": "none",
+          "-moz-user-select": "none",
+          "-ms-user-select": "none",
+          "user-select": "none",
+        });
+        $("body").append($i);
+        $i.animate({
+            "top": y - 200,
+            "opacity": 0
+          },
+          1000,
+          function () {
+            $i.remove();
+          });
+      });
+    });
+  </script>
+</body>
+
+</html>
